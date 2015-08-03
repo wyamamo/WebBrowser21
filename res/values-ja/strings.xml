@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="app_name">Chapter0521</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_search">検索</string>
+    <string name="title_activity_main">Chapter0521</string>
+
+</resources>
