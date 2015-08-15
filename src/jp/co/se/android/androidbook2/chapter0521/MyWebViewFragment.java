@@ -15,37 +15,37 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 public class MyWebViewFragment extends Fragment {
-    // ‰æ–Ê‚É•\¦‚·‚é‚½‚ßWebView
+    // ç”»é¢ã«è¡¨ç¤ºã™ã‚‹ãŸã‚WebView
     private WebView mWebView;
     private ProgressBar mProgressbar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        // Fragemnt‚ÌƒŒƒCƒAƒEƒg‚ğ¶¬
+        // Fragemntã®ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã‚’ç”Ÿæˆ
         View view = inflater.inflate(R.layout.fragment_webview, container, false);
 
-        // ‰æ–Ê‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğæ“¾
+        // ç”»é¢ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å–å¾—
         mWebView = (WebView) view.findViewById(R.id.webView);
         mProgressbar = (ProgressBar) view.findViewById(R.id.progressbar);
 
-        // WebSettingsƒIƒuƒWƒFƒNƒg‚ğæ“¾
+        // WebSettingsã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
         WebSettings settings = mWebView.getSettings();
 
-        // JavaScript‚ğ—LŒø
+        // JavaScriptã‚’æœ‰åŠ¹
         settings.setJavaScriptEnabled(true);
 
-        // Flash“™‚Ìƒvƒ‰ƒOƒCƒ“‚ğ—LŒø
+        // Flashç­‰ã®ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã‚’æœ‰åŠ¹
         settings.setPluginState(PluginState.ON_DEMAND);
 
-        // Webƒy[ƒW“Ç‚İ‚İ‚ÌƒCƒxƒ“ƒg‚ÌƒŠƒXƒi[‚ğİ’è
+        // Webãƒšãƒ¼ã‚¸èª­ã¿è¾¼ã¿æ™‚ã®ã‚¤ãƒ™ãƒ³ãƒˆã®ãƒªã‚¹ãƒŠãƒ¼ã‚’è¨­å®š
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                // ƒy[ƒW‚Ì“Ç‚İ‚İ‚ğŠJn‚µ‚½ÛAƒvƒƒOƒŒƒXƒo[‚ğ•\¦
+                // ãƒšãƒ¼ã‚¸ã®èª­ã¿è¾¼ã¿ã‚’é–‹å§‹ã—ãŸéš›ã€ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼ã‚’è¡¨ç¤º
                 mProgressbar.setVisibility(View.VISIBLE);
 
-                // URL‚ğƒAƒNƒVƒ‡ƒ“ƒo[‚ÌƒTƒuƒ^ƒCƒgƒ‹‚Éİ’è
+                // URLã‚’ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒãƒ¼ã®ã‚µãƒ–ã‚¿ã‚¤ãƒˆãƒ«ã«è¨­å®š
                 ActionBar actionBar = getActivity().getActionBar();
                 if (actionBar != null) {
                     actionBar.setSubtitle(url);
@@ -54,23 +54,23 @@ public class MyWebViewFragment extends Fragment {
 
             @Override
             public void onPageFinished(WebView view, String url) {
-                // ƒy[ƒW‚Ì“Ç‚İ‚İ‚ğI—¹‚µ‚½ÛAƒvƒƒOƒŒƒXƒo[‚ğ”ñ•\¦
+                // ãƒšãƒ¼ã‚¸ã®èª­ã¿è¾¼ã¿ã‚’çµ‚äº†ã—ãŸéš›ã€ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼ã‚’éè¡¨ç¤º
                 mProgressbar.setVisibility(View.GONE);
             }
         });
 
-        // Webƒy[ƒW‚ÉŠÖ‚·‚éî•ñ‚ğó‚¯æ‚é
+        // Webãƒšãƒ¼ã‚¸ã«é–¢ã™ã‚‹æƒ…å ±ã‚’å—ã‘å–ã‚‹
         mWebView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
-                // ƒvƒƒOƒŒƒXƒo[‚ÉŒ»İ‚Ìi’»‚ğ”½‰f‚·‚é
+                // ãƒ—ãƒ­ã‚°ãƒ¬ã‚¹ãƒãƒ¼ã«ç¾åœ¨ã®é€²æ—ã‚’åæ˜ ã™ã‚‹
                 mProgressbar.setProgress(newProgress);
             }
 
             @Override
             public void onReceivedTitle(WebView view, String title) {
-                // ƒy[ƒW‚Ìƒ^ƒCƒgƒ‹‚ğæ“¾‚Å‚«‚éƒ^ƒCƒ~ƒ“ƒO‚É‚È‚Á‚½‚ç
-                // ƒAƒNƒVƒ‡ƒ“ƒo[‚Éƒ^ƒCƒgƒ‹‚ğƒZƒbƒg‚·‚é
+                // ãƒšãƒ¼ã‚¸ã®ã‚¿ã‚¤ãƒˆãƒ«ã‚’å–å¾—ã§ãã‚‹ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã«ãªã£ãŸã‚‰
+                // ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãƒãƒ¼ã«ã‚¿ã‚¤ãƒˆãƒ«ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
                 ActionBar actionBar = getActivity().getActionBar();
                 if (actionBar != null) {
                     actionBar.setTitle(title);
@@ -78,11 +78,11 @@ public class MyWebViewFragment extends Fragment {
             }
         });
 
-        // ƒAƒNƒeƒBƒrƒeƒB‹N“®‚ÉURL‚ğ“Ç‚İ‚Ş
+        // ã‚¢ã‚¯ãƒ†ã‚£ãƒ“ãƒ†ã‚£èµ·å‹•æ™‚ã«URLã‚’èª­ã¿è¾¼ã‚€
         if (savedInstanceState == null) {
             mWebView.loadUrl("https://www.google.co.jp/");
         } else {
-            // WebView‚Ìó‘Ô‚ğ•œŒ³
+            // WebViewã®çŠ¶æ…‹ã‚’å¾©å…ƒ
             mWebView.restoreState(savedInstanceState);
         }
         return view;
@@ -90,7 +90,7 @@ public class MyWebViewFragment extends Fragment {
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        // WebView‚Ìó‘Ô‚ğ•Û‘¶
+        // WebViewã®çŠ¶æ…‹ã‚’ä¿å­˜
         mWebView.saveState(outState);
         super.onSaveInstanceState(outState);
     }
@@ -102,20 +102,20 @@ public class MyWebViewFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        // WebView‚ÅÀs’†‚Ìˆ—‚ğ’â~
+        // WebViewã§å®Ÿè¡Œä¸­ã®å‡¦ç†ã‚’åœæ­¢
         mWebView.onPause();
     }
 
     @Override
     public void onResume() {
-        // WebView‚Ìˆ—‚ğŠJn
+        // WebViewã®å‡¦ç†ã‚’é–‹å§‹
         mWebView.onResume();
         super.onResume();
     }
 
     @Override
     public void onDestroy() {
-        // WebView‚ğˆÀ‘S‚ÉI—¹
+        // WebViewã‚’å®‰å…¨ã«çµ‚äº†
         if (mWebView != null) {
             mWebView.stopLoading();
             mWebView.setWebChromeClient(null);

@@ -15,9 +15,9 @@ import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
 
 public class MainActivity extends Activity {
-    // ‰æ–Ê‚É•\¦‚·‚éWebView‚ÌFragment
+    // ç”»é¢ã«è¡¨ç¤ºã™ã‚‹WebViewã®Fragment
     private MyWebViewFragment mWebFragment;
-    // ŒŸõƒ{ƒbƒNƒX‚ÌView
+    // æ¤œç´¢ãƒœãƒƒã‚¯ã‚¹ã®View
     private SearchView mSearchView;
 
     @Override
@@ -26,11 +26,11 @@ public class MainActivity extends Activity {
 
         FragmentManager fm = getFragmentManager();
 
-        // ‰æ–Ê‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğæ“¾
+        // ç”»é¢ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’å–å¾—
         mWebFragment = (MyWebViewFragment) fm.findFragmentById(android.R.id.content);
 
         if (mWebFragment == null) {
-            // Œ©‚Â‚©‚ç‚È‚¯‚ê‚ÎAƒRƒ“ƒeƒ“ƒc—Ìˆæ‚ÉFragment‚ğ’Ç‰Á
+            // è¦‹ã¤ã‹ã‚‰ãªã‘ã‚Œã°ã€ã‚³ãƒ³ãƒ†ãƒ³ãƒ„é ˜åŸŸã«Fragmentã‚’è¿½åŠ 
             mWebFragment = new MyWebViewFragment();
             fm.beginTransaction().add(android.R.id.content, mWebFragment).commit();
         }
@@ -38,12 +38,12 @@ public class MainActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        // —š—ğ‚ª‚ ‚ê‚ÎABackƒL[‚Å‘O‚Ìƒy[ƒWƒw–ß‚é
+        // å±¥æ­´ãŒã‚ã‚Œã°ã€Backã‚­ãƒ¼ã§å‰ã®ãƒšãƒ¼ã‚¸ãƒ˜æˆ»ã‚‹
         WebView webView = mWebFragment.getWebView();
         if (webView.canGoBack()) {
             webView.goBack();
         } else {
-            // —š—ğ‚ª‚È‚¯‚ê‚Î’Êí’Ê‚èBackƒL[‚Ìˆ—‚ğs‚¢AActivity‚ğI—¹
+            // å±¥æ­´ãŒãªã‘ã‚Œã°é€šå¸¸é€šã‚ŠBackã‚­ãƒ¼ã®å‡¦ç†ã‚’è¡Œã„ã€Activityã‚’çµ‚äº†
             super.onBackPressed();
         }
     }
@@ -52,47 +52,47 @@ public class MainActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main, menu);
 
-        // SearchView‚ğŒÄ‚Ño‚·
+        // SearchViewã‚’å‘¼ã³å‡ºã™
         final MenuItem searchMenu = menu.findItem(R.id.menu_search);
         mSearchView = (SearchView) searchMenu.getActionView();
 
-        // ŒŸõƒAƒCƒRƒ“‚ğŒŸõƒ{ƒbƒNƒX‚Ì“à‘¤‚É”z’u
+        // æ¤œç´¢ã‚¢ã‚¤ã‚³ãƒ³ã‚’æ¤œç´¢ãƒœãƒƒã‚¯ã‚¹ã®å†…å´ã«é…ç½®
         mSearchView.setIconifiedByDefault(true);
 
-        // ŒŸõŠJnƒ{ƒ^ƒ“‚ğ•\¦
+        // æ¤œç´¢é–‹å§‹ãƒœã‚¿ãƒ³ã‚’è¡¨ç¤º
         mSearchView.setSubmitButtonEnabled(false);
 
-        // ŒŸõ•¶š—ñ‚ğ“ü—Í‚µ‚½Û‚âŒŸõÀs‚ÉŒÄ‚Î‚ê‚éƒŠƒXƒi[‚ğİ’è
+        // æ¤œç´¢æ–‡å­—åˆ—ã‚’å…¥åŠ›ã—ãŸéš›ã‚„æ¤œç´¢å®Ÿè¡Œæ™‚ã«å‘¼ã°ã‚Œã‚‹ãƒªã‚¹ãƒŠãƒ¼ã‚’è¨­å®š
         mSearchView.setOnSearchClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Œ»İ‚Ìƒy[ƒW‚ÌURL‚ğƒZƒbƒg
+                // ç¾åœ¨ã®ãƒšãƒ¼ã‚¸ã®URLã‚’ã‚»ãƒƒãƒˆ
                 WebView webView = mWebFragment.getWebView();
                 mSearchView.setQuery(webView.getUrl(), false);
             }
         });
 
-        // ŒŸõ•¶š—ñ‚ğ“ü—Í‚µ‚½Û‚âŒŸõÀs‚ÉŒÄ‚Î‚ê‚éƒŠƒXƒi[‚ğİ’è
+        // æ¤œç´¢æ–‡å­—åˆ—ã‚’å…¥åŠ›ã—ãŸéš›ã‚„æ¤œç´¢å®Ÿè¡Œæ™‚ã«å‘¼ã°ã‚Œã‚‹ãƒªã‚¹ãƒŠãƒ¼ã‚’è¨­å®š
         mSearchView.setOnQueryTextListener(new OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 String url;
                 if (query.startsWith("http://") || query.startsWith("https://")) {
-                    // http://‚Ü‚½‚Íhttps://‚ÅURL‚ªn‚Ü‚Á‚Ä‚¢‚éê‡‚ÍAWebView‚ÉURL‚ğ‚»‚Ì‚Ü‚Ü“n‚·
+                    // http://ã¾ãŸã¯https://ã§URLãŒå§‹ã¾ã£ã¦ã„ã‚‹å ´åˆã¯ã€WebViewã«URLã‚’ãã®ã¾ã¾æ¸¡ã™
                     url = query;
                 } else {
-                    // ‚»‚êˆÈŠO‚Ìê‡‚ÍGoogleŒŸõ‚ğs‚¤
+                    // ãã‚Œä»¥å¤–ã®å ´åˆã¯Googleæ¤œç´¢ã‚’è¡Œã†
                     String encodedQuery = Uri.encode(query);
                     url = "https://www.google.co.jp/search?q=" + encodedQuery;
                 }
-                // URL‚ğ“Ç‚İ‚Ş
+                // URLã‚’èª­ã¿è¾¼ã‚€
                 mWebFragment.getWebView().loadUrl(url);
 
-                // ƒL[ƒ{[ƒh‚ğ•Â‚¶‚é
+                // ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã‚’é–‰ã˜ã‚‹
                 InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputMethodManager.hideSoftInputFromWindow(mSearchView.getWindowToken(), 0);
 
-                // ŒŸõ‚ğ•Â‚¶‚é
+                // æ¤œç´¢ã‚’é–‰ã˜ã‚‹
                 searchMenu.collapseActionView();
 
                 return false;
@@ -100,7 +100,7 @@ public class MainActivity extends Activity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                // ŒŸõƒ{ƒbƒNƒX‚É‚Ä“à—e‚ª•ÏX‚³‚ê‚½Û‚ÉÀs
+                // æ¤œç´¢ãƒœãƒƒã‚¯ã‚¹ã«ã¦å†…å®¹ãŒå¤‰æ›´ã•ã‚ŒãŸéš›ã«å®Ÿè¡Œ
                 return false;
             }
         });
